@@ -2,7 +2,6 @@ package a;
 
 import static org.testng.Assert.assertEquals;
 
-import java.awt.Window;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -10,7 +9,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Task1 {
 	public static void main(String args[]) throws InterruptedException {
@@ -54,25 +54,28 @@ public class Task1 {
 	 JavascriptExecutor js=(JavascriptExecutor)driver;
 	 js.executeScript("arguments[0].scrollIntoView({block:'center'})" , ele);
 	 
-	 
-	WebElement clear_200= driver.findElement(By.cssSelector("[id=\":r0:\"]"));
-	clear_200.click();
-	Thread.sleep(2000);
-	clear_200.clear();
-	Thread.sleep(2000);
-	clear_200.sendKeys("850");
+
+
 	 
 	 
-//	 Actions actn=new Actions(driver);
-//		
-//		WebElement min=driver.findElement(By.cssSelector("[value=\"200\"]"));
-//		System.out.println(min.getLocation());
-//
-//	
-//		
-//		actn.dragAndDropBy(min,1000, 655).perform();
-//		System.out.println("min is pass");
-		
+//	WebElement clear_200= driver.findElement(By.cssSelector("[id=\":r0:\"]"));
+//	clear_200.click();
+//	Thread.sleep(2000);
+//	clear_200.clear();
+//	Thread.sleep(2000);
+//	clear_200.sendKeys("850");
+	 
+
+	//4. Adjust the Slider:
+			WebDriverWait mywait=new WebDriverWait(driver, Duration.ofSeconds(25));
+			mywait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='number' and @id=':r0:']")));
+			driver.findElement(By.xpath("//input[@type='number' and @id=':r0:']")).clear();
+			driver.findElement(By.xpath("//input[@type='number' and @id=':r0:']")).sendKeys("820");
+			Thread.sleep(8000);
+			//5 and 6 Update the Text Field:
+			driver.findElement(By.xpath("//input[@type='number' and @id=':r0:']")).clear();
+			driver.findElement(By.xpath("//input[@type='number' and @id=':r0:']")).sendKeys("560");
+
 	
 	
 //	7. Select CPT Codes:
